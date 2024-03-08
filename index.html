@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TODO Elemek</title>
+    </head>
+    <body>
+        <h1>TODO Elemek</h1>
+        <ul id="todo-lista"></ul>
+
+        <script>
+            // ToDo elemek lekérdezése a PHP-tól
+            fetch("/osszes")
+                .then((response) => response.json())
+                .then((adatok) => {
+                    const todoLista = document.getElementById("todo-lista");
+                    adatok.forEach((todo) => {
+                        const listaElem = document.createElement("li");
+                        listaElem.textContent = todo.tema;
+                        todoLista.appendChild(listaElem);
+                    });
+                })
+                .catch((hiba) => console.error("Hiba történt:", hiba));
+        </script>
+    </body>
+</html>

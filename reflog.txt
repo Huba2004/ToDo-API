@@ -12,3 +12,9 @@ f4f1690 HEAD@{0}: commit: Próba elemek létrehozása a TODO-hoz
 707ff3a HEAD@{2}: commit: Mappaszerkezet atalakitasa, adatbazis felkeszitese, index.html
 71debda HEAD@{3}: commit: ElsoFeltoltes
 c615e78 HEAD@{4}: clone: from https://github.com/Huba2004/ToDo-API.git
+38aba56 HEAD@{0}: commit: Todo elemek lekérdezése, /osszes
+f4f1690 HEAD@{1}: commit: Próba elemek létrehozása a TODO-hoz
+7a7c485 HEAD@{2}: commit: Adatbazis atalakitasa, teljes letrehozas
+707ff3a HEAD@{3}: commit: Mappaszerkezet atalakitasa, adatbazis felkeszitese, index.html
+71debda HEAD@{4}: commit: ElsoFeltoltes
+c615e78 HEAD@{5}: clone: from https://github.com/Huba2004/ToDo-API.git
