@@ -1,2 +1,5 @@
 71debda HEAD@{0}: commit: ElsoFeltoltes
 c615e78 HEAD@{1}: clone: from https://github.com/Huba2004/ToDo-API.git
+707ff3a HEAD@{0}: commit: Mappaszerkezet atalakitasa, adatbazis felkeszitese, index.html
+71debda HEAD@{1}: commit: ElsoFeltoltes
+c615e78 HEAD@{2}: clone: from https://github.com/Huba2004/ToDo-API.git
