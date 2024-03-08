@@ -42,10 +42,20 @@ $todoAdatok = [
         "2024-03-08 15:30:00",
     ],
 ];
-
+//Elemek feltöltése a todoAdatok
 foreach ($todoAdatok as $todo) {
     $stmt = $pdo->prepare(
         "INSERT INTO todos (tema, leiras, kategoria, felveteli_ido) VALUES (?, ?, ?, ?)"
     );
     $stmt->execute($todo);
 }
+//Elemek lekérdezése, visszadás JSON formátumban
+$app->get("/osszes", function (Request $request, Response $response) use (
+    $pdo
+) {
+    $stmt = $pdo->query("SELECT * FROM todos");
+    $osszes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $response->getBody()->write(json_encode($osszes));
+    return $response->withHeader("Content-Type", "application/json");
+});

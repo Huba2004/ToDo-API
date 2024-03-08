@@ -7,3 +7,8 @@ c615e78 HEAD@{2}: clone: from https://github.com/Huba2004/ToDo-API.git
 707ff3a HEAD@{1}: commit: Mappaszerkezet atalakitasa, adatbazis felkeszitese, index.html
 71debda HEAD@{2}: commit: ElsoFeltoltes
 c615e78 HEAD@{3}: clone: from https://github.com/Huba2004/ToDo-API.git
+f4f1690 HEAD@{0}: commit: Próba elemek létrehozása a TODO-hoz
+7a7c485 HEAD@{1}: commit: Adatbazis atalakitasa, teljes letrehozas
+707ff3a HEAD@{2}: commit: Mappaszerkezet atalakitasa, adatbazis felkeszitese, index.html
+71debda HEAD@{3}: commit: ElsoFeltoltes
+c615e78 HEAD@{4}: clone: from https://github.com/Huba2004/ToDo-API.git
