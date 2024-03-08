@@ -6,7 +6,7 @@ use Slim\Factory\AppFactory;
 require __DIR__ . "/vendor/autoload.php";
 
 $app = AppFactory::create();
-
+//ADATBÁZIS létrehozása, táblák létrhozása [SQLite]
 $container = $app->getContainer();
 $container["db"] = function ($container) {
     $dbPath = __DIR__ . "/todos.db";
@@ -26,3 +26,26 @@ $container["db"] = function ($container) {
 };
 
 $app->run();
+
+//TESZT ADATOKKAL VALÓ FELTÖLTÉS
+$todoAdatok = [
+    [
+        "Házi feladat elkészítése",
+        "Matematika házi feladat",
+        "Iskola",
+        "2024-03-08 10:00:00",
+    ],
+    [
+        "Bevásárolás",
+        "Tej, kenyér, tojás",
+        "Bevásárlás ALDI-ban",
+        "2024-03-08 15:30:00",
+    ],
+];
+
+foreach ($todoAdatok as $todo) {
+    $stmt = $pdo->prepare(
+        "INSERT INTO todos (tema, leiras, kategoria, felveteli_ido) VALUES (?, ?, ?, ?)"
+    );
+    $stmt->execute($todo);
+}
