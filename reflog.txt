@@ -1,0 +1,2 @@
+71debda HEAD@{0}: commit: ElsoFeltoltes
+c615e78 HEAD@{1}: clone: from https://github.com/Huba2004/ToDo-API.git

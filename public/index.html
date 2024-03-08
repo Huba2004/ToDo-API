@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8" />
+        <title>TODO Lista</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                width: 80%;
+                margin: 0 auto;
+            }
+            .todo-item {
+                background: #f7f7f7;
+                border: 1px solid #ddd;
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+            .todo-header {
+                background: #e7e7e7;
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="todo-header">
+                <input type="text" id="kategoria" placeholder="Kategória" />
+                <input type="text" id="leiras" placeholder="Leírás" />
+                <button onclick="todoHozzaadas()">Hozzáad</button>
+            </div>
+            <div id="todoLista"></div>
+        </div>
+
+        <script>
+            function todoHozzaadas() {
+                var kategoria = document.getElementById("kategoria").value;
+                var leiras = document.getElementById("leiras").value;
+
+                fetch("/todos", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        kategoria: kategoria,
+                        leiras: leiras,
+                        kesz: false,
+                    }),
+                })
+                    .then((valasz) => valasz.json())
+                    .then((adat) => {
+                        document.getElementById("kategoria").value = "";
+                        document.getElementById("leiras").value = "";
+                        todoListaFrissites();
+                    })
+                    .catch((hiba) => console.error("Hiba: ", hiba));
+            }
+
+            function todoListaFrissites() {
+                fetch("/todos")
+                    .then((valasz) => valasz.json())
+                    .then((adat) => {
+                        var lista = document.getElementById("todoLista");
+                        lista.innerHTML = "";
+                        adat.forEach(function (todo) {
+                            var elem = document.createElement("div");
+                            elem.className = "todo-item";
+                            elem.innerHTML = `
+                        <p>Kategória: ${todo.kategoria}</p>
+                        <p>Leírás: ${todo.leiras}</p>
+                        <p>Befejezve: ${todo.kesz ? "Igen" : "Nem"}</p>
+                    `;
+                            lista.appendChild(elem);
+                        });
+                    })
+                    .catch((hiba) => console.error("Hiba: ", hiba));
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                todoListaFrissites();
+            });
+        </script>
+    </body>
+</html>
