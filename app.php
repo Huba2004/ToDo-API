@@ -67,4 +67,16 @@ $app->put("/todok/{id}", function ($request, $response, $args) use (
 });
 
 //TÖRLÉS
+$app->delete("/todok/{id}", function ($request, $response, $args) use (
+    $adatbazis
+) {
+    $id = $args["id"];
+
+    $lekerdezes = $adatbazis->prepare("DELETE FROM todok WHERE id = :id");
+    $lekerdezes->bindValue(":id", $id);
+    $lekerdezes->execute();
+
+    return $response->withJson(["uzenet" => "Teendő törölve"]);
+});
+
 $app->run();
