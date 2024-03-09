@@ -8,12 +8,9 @@ Composer: 2.7.1
 
 #A CORS megoldás(
 header('Access-Control-Allow-Origin: http://127.0.0.1:5500');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE);
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
-if ($\_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-header('HTTP/1.1 200 OK');
-exit();
-})MÁRKUS ANDRÁSTÓL származik.
+MÁRKUS ANDRÁSTÓL származik.
 Live Server használata kötelező ennek értelmében.
 #Indítás: php -S localhost:8000 app.php
 

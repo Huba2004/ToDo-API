@@ -1,11 +1,7 @@
 <?php
-header('Access-Control-Allow-Origin: http://127.0.0.1:5500');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    header('HTTP/1.1 200 OK');
-    exit();
-}
+header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 use Slim\Factory\AppFactory;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -65,7 +61,7 @@ $app->put("/todok/{id}", function (
 ) use ($adatbazis) {
     $id = $args["id"];
 
-    $input = json_decode(file_get_contents('php://input'), true);
+    $input = json_decode(file_get_contents("php://input"), true);
 
     $lekerdezes = $adatbazis->prepare(
         "UPDATE todok SET teendo = :teendo, kategoria = :kategoria WHERE id = :id"
@@ -75,10 +71,11 @@ $app->put("/todok/{id}", function (
     $lekerdezes->bindValue(":id", $id);
     $lekerdezes->execute();
     $response->getBody()->write(json_encode(["uzenet" => "Teendő módosítva"]));
-    return $response->withHeader('Content-Type', 'application/x-www-form-urlencoded');
-    
+    return $response->withHeader(
+        "Content-Type",
+        "application/x-www-form-urlencoded"
+    );
 });
-
 
 // TÖRLÉS
 $app->delete("/todok/{id}", function (
