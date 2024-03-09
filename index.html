@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+    <head>
+        <title>TODO API</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <h1>TODO API</h1>
+        <h2>Teendők listázása</h2>
+        <ul id="todok"></ul>
+
+        <h2>Új teendő hozzáadása</h2>
+        <form id="ujTodoForm">
+            <label for="teendo">Teendő:</label>
+            <input type="text" id="teendo" name="teendo" required />
+            <br />
+            <label for="kategoria">Kategória:</label>
+            <input type="text" id="kategoria" name="kategoria" required />
+            <br />
+            <button type="submit">Hozzáadás</button>
+        </form>
+
+        <script>
+            function getTodok() {
+                $.ajax({
+                    url: "/todok",
+                    type: "GET",
+                    success: function (todok) {
+                        $("#todok").empty();
+                        todok.forEach(function (todo) {
+                            $("#todok").append(
+                                "<li>" +
+                                    todo.teendo +
+                                    " (" +
+                                    todo.kategoria +
+                                    ') <button onclick="modositTodo(' +
+                                    todo.id +
+                                    ')">Módosít</button> <button onclick="torolTodo(' +
+                                    todo.id +
+                                    ')">Töröl</button></li>',
+                            );
+                        });
+                    },
+                });
+            }
+            $("#ujTodoForm").submit(function (event) {
+                event.preventDefault();
+                const teendo = $("#teendo").val();
+                const kategoria = $("#kategoria").val();
+
+                $.ajax({
+                    url: "/ujtodok",
+                    type: "POST",
+                    data: { teendo: teendo, kategoria: kategoria },
+                    success: function (result) {
+                        alert(result.uzenet);
+                        getTodok();
+                        $("#teendo").val("");
+                        $("#kategoria").val("");
+                    },
+                });
+            });
+
+            function modositTodo(id) {
+                const teendo = prompt("Új teendő:");
+                const kategoria = prompt("Új kategória:");
+
+                if (teendo && kategoria) {
+                    $.ajax({
+                        url: `/todok/${id}`,
+                        type: "PUT",
+                        data: { teendo: teendo, kategoria: kategoria },
+                        success: function (result) {
+                            alert(result.uzenet);
+                            getTodok();
+                        },
+                    });
+                }
+            }
+
+            function torolTodo(id) {
+                if (confirm("Biztosan törölni szeretnéd ezt a teendőt?")) {
+                    $.ajax({
+                        url: `/todok/${id}`,
+                        type: "DELETE",
+                        success: function (result) {
+                            alert(result.uzenet);
+                            getTodok();
+                        },
+                    });
+                }
+            }
+
+            getTodok();
+        </script>
+    </body>
+</html>
