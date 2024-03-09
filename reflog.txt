@@ -29,3 +29,21 @@ f4f1690 HEAD@{12}: commit: Próba elemek létrehozása a TODO-hoz
 707ff3a HEAD@{14}: commit: Mappaszerkezet atalakitasa, adatbazis felkeszitese, index.html
 71debda HEAD@{15}: commit: ElsoFeltoltes
 c615e78 HEAD@{16}: clone: from https://github.com/Huba2004/ToDo-API.git
+487b604 HEAD@{0}: commit: REFLOG.txt elkészítése
+308b56b HEAD@{1}: commit: Felesleges részek eltávolítása
+64cd26a HEAD@{2}: commit: README módosítása, szerkesztési funkció átalakítása
+d9eebf5 HEAD@{3}: commit: Hibajavitas
+df54a5a HEAD@{4}: commit: Index.html, alapveto funckiok
+ecc3a62 HEAD@{5}: commit: Torles vegpont
+edf1086 HEAD@{6}: commit: Módosítás végpont
+023ea50 HEAD@{7}: commit: app.php kezdeti definialasa, adatbazis es tablak letrehozasa, OSSZES es UJ route
+a8ea4e8 HEAD@{8}: commit: Felulet kiprobalasa, composer es Slim framework hasznalata
+b141889 HEAD@{9}: commit: Composer, slim környezet létrehozva
+0ff9437 HEAD@{10}: commit: ujra
+fc93e40 HEAD@{11}: commit: Todo elemek HTML, lekérdezés megjelenítése /osszes
+38aba56 HEAD@{12}: commit: Todo elemek lekérdezése, /osszes
+f4f1690 HEAD@{13}: commit: Próba elemek létrehozása a TODO-hoz
+7a7c485 HEAD@{14}: commit: Adatbazis atalakitasa, teljes letrehozas
+707ff3a HEAD@{15}: commit: Mappaszerkezet atalakitasa, adatbazis felkeszitese, index.html
+71debda HEAD@{16}: commit: ElsoFeltoltes
+c615e78 HEAD@{17}: clone: from https://github.com/Huba2004/ToDo-API.git
