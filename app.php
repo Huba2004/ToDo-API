@@ -1,5 +1,11 @@
 <?php
-
+header('Access-Control-Allow-Origin: http://127.0.0.1:5500');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header('HTTP/1.1 200 OK');
+    exit();
+}
 use Slim\Factory\AppFactory;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -8,7 +14,6 @@ require __DIR__ . "/vendor/autoload.php";
 
 $app = AppFactory::create();
 
-// Adatbázis létrehozása és inicializálása
 $adatbazisUtvonal = __DIR__ . "/todo.db";
 $adatbazisLetezik = file_exists($adatbazisUtvonal);
 
@@ -24,8 +29,7 @@ if (!$adatbazisLetezik) {
         'INSERT INTO todok (teendo, kategoria) VALUES ("Tanulás", "Sürgős")'
     );
 }
-
-// Összes TODO lekérdezése
+//ÖSSZES
 $app->get("/todok", function (Request $request, Response $response) use (
     $adatbazis
 ) {
@@ -39,7 +43,7 @@ $app->get("/todok", function (Request $request, Response $response) use (
     return $response->withHeader("Content-Type", "application/json");
 });
 
-// Új TODO hozzáadása
+// Új TODO
 $app->post("/ujtodok", function (Request $request, Response $response) use (
     $adatbazis
 ) {
@@ -53,25 +57,30 @@ $app->post("/ujtodok", function (Request $request, Response $response) use (
     return $response->withJson(["uzenet" => "Új teendő létrehozva"]);
 });
 
-// TODO módosítása
+// MÓDOSÍTÁS
 $app->put("/todok/{id}", function (
     Request $request,
     Response $response,
     array $args
 ) use ($adatbazis) {
     $id = $args["id"];
-    $adatok = (array) $request->getParsedBody();
+
+    $input = json_decode(file_get_contents('php://input'), true);
+
     $lekerdezes = $adatbazis->prepare(
         "UPDATE todok SET teendo = :teendo, kategoria = :kategoria WHERE id = :id"
     );
-    $lekerdezes->bindValue(":teendo", $adatok["teendo"]);
-    $lekerdezes->bindValue(":kategoria", $adatok["kategoria"]);
+    $lekerdezes->bindValue(":teendo", $input["teendo"]);
+    $lekerdezes->bindValue(":kategoria", $input["kategoria"]);
     $lekerdezes->bindValue(":id", $id);
     $lekerdezes->execute();
-    return $response->withJson(["uzenet" => "Teendő módosítva"]);
+    $response->getBody()->write(json_encode(["uzenet" => "Teendő módosítva"]));
+    return $response->withHeader('Content-Type', 'application/x-www-form-urlencoded');
+    
 });
 
-// TODO törlése
+
+// TÖRLÉS
 $app->delete("/todok/{id}", function (
     Request $request,
     Response $response,

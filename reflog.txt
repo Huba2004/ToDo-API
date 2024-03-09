@@ -1,0 +1,14 @@
+df54a5a HEAD@{0}: commit: Index.html, alapveto funckiok
+ecc3a62 HEAD@{1}: commit: Torles vegpont
+edf1086 HEAD@{2}: commit: Módosítás végpont
+023ea50 HEAD@{3}: commit: app.php kezdeti definialasa, adatbazis es tablak letrehozasa, OSSZES es UJ route
+a8ea4e8 HEAD@{4}: commit: Felulet kiprobalasa, composer es Slim framework hasznalata
+b141889 HEAD@{5}: commit: Composer, slim környezet létrehozva
+0ff9437 HEAD@{6}: commit: ujra
+fc93e40 HEAD@{7}: commit: Todo elemek HTML, lekérdezés megjelenítése /osszes
+38aba56 HEAD@{8}: commit: Todo elemek lekérdezése, /osszes
+f4f1690 HEAD@{9}: commit: Próba elemek létrehozása a TODO-hoz
+7a7c485 HEAD@{10}: commit: Adatbazis atalakitasa, teljes letrehozas
+707ff3a HEAD@{11}: commit: Mappaszerkezet atalakitasa, adatbazis felkeszitese, index.html
+71debda HEAD@{12}: commit: ElsoFeltoltes
+c615e78 HEAD@{13}: clone: from https://github.com/Huba2004/ToDo-API.git
