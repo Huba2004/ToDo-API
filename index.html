@@ -25,24 +25,24 @@
                 $.ajax({
                     url: "/todok",
                     type: "GET",
-                    success: function (todok) {
+                    success: function (data) {
                         $("#todok").empty();
-                        todok.forEach(function (todo) {
-                            $("#todok").append(
-                                "<li>" +
-                                    todo.teendo +
-                                    " (" +
-                                    todo.kategoria +
-                                    ') <button onclick="modositTodo(' +
-                                    todo.id +
-                                    ')">Módosít</button> <button onclick="torolTodo(' +
-                                    todo.id +
-                                    ')">Töröl</button></li>',
-                            );
-                        });
+                        if (data && Array.isArray(data)) {
+                            data.forEach(function (todo) {
+                                $("#todok").append(
+                                    `<li>${todo.teendo} (${todo.kategoria}) <button onclick="modositTodo(${todo.id})">Módosít</button> <button onclick="torolTodo(${todo.id})">Töröl</button></li>`,
+                                );
+                            });
+                        } else {
+                            console.error("A válasz nem tömb!");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Hiba a kérés során:", error);
                     },
                 });
             }
+
             $("#ujTodoForm").submit(function (event) {
                 event.preventDefault();
                 const teendo = $("#teendo").val();
@@ -57,6 +57,9 @@
                         getTodok();
                         $("#teendo").val("");
                         $("#kategoria").val("");
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Hiba a kérés során:", error);
                     },
                 });
             });
@@ -74,6 +77,9 @@
                             alert(result.uzenet);
                             getTodok();
                         },
+                        error: function (xhr, status, error) {
+                            console.error("Hiba a kérés során:", error);
+                        },
                     });
                 }
             }
@@ -86,6 +92,9 @@
                         success: function (result) {
                             alert(result.uzenet);
                             getTodok();
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Hiba a kérés során:", error);
                         },
                     });
                 }
